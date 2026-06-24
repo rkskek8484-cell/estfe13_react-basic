@@ -1,5 +1,5 @@
 // MyArticle 컴포넌트
-function MyArticle({ title, desc, onChangeMode }) {
+function MyArticle({ title, desc, onChangeMode, onDelete }) {
   console.log('MyArticle render');
   return (
     <section>
@@ -8,14 +8,19 @@ function MyArticle({ title, desc, onChangeMode }) {
         <p>{desc}</p>
       </article>
       <button
-        onClick={(e) => {
-          e.preventDefault();
+        onClick={() => {
           onChangeMode();
         }}
       >
         수정
       </button>
-      <button>삭제</button>
+      <button
+        onClick={() => {
+          onDelete();
+        }}
+      >
+        삭제
+      </button>
     </section>
   );
 }
