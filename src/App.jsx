@@ -3,6 +3,8 @@ import Myheader from './components/Myheader';
 import Nav from './components/Nav';
 import MyArticle from './components/MyArticle';
 import { useState } from 'react';
+import Controls from './components/controls';
+import CreateArticle from './components/createArticle';
 
 function App() {
   console.log('App render');
@@ -21,10 +23,12 @@ function App() {
 
   let _title = null;
   let _desc = null;
+  let _article = null;
 
   if (mode === 'welcome') {
     _title = welcome.title;
     _desc = welcome.desc;
+    _article = <MyArticle title={_title} desc={_desc} />;
   } else if (mode === 'read') {
     const selected = content.find((c) => c.id === id);
 
@@ -32,6 +36,9 @@ function App() {
       _title = selected.title;
       _desc = selected.desc;
     }
+    _article = <MyArticle title={_title} desc={_desc} />;
+  } else if (mode === 'create') {
+    _article = <CreateArticle />;
   }
   return (
     <>
@@ -60,7 +67,13 @@ function App() {
           setId(_id);
         }}
       />
-      <MyArticle title={_title} desc={_desc} />
+      {_article}
+      <hr />
+      <Controls
+        onChangeMode={() => {
+          setMode('create');
+        }}
+      />
     </>
   );
 }
