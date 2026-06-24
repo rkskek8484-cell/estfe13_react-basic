@@ -93,7 +93,8 @@ function App() {
       <UpdateArticle
         title={selectedArticle.title}
         desc={selectedArticle.desc}
-        onSubmit={(_title, _desc) => {
+        level={selectedArticle.level}
+        onSubmit={(_title, _desc, _level) => {
           setContent((prev) =>
             prev.map((p) =>
               p.id === id
@@ -101,6 +102,7 @@ function App() {
                     ...p,
                     title: _title,
                     desc: _desc,
+                    level: _level,
                   }
                 : p,
             ),

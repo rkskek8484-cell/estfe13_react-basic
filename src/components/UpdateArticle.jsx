@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-function UpdateArticle({ title, desc, onSubmit }) {
+function UpdateArticle({ title, desc, level, onSubmit }) {
   console.log('UpdateArticle render');
   const [content, setContent] = useState({
     title: title,
     desc: desc,
+    level: level,
   });
   // const [newTitle, setNewTitle] = useState(title);
   // const [newDesc, setNewDesc] = useState(desc);
@@ -32,7 +33,7 @@ function UpdateArticle({ title, desc, onSubmit }) {
         action=''
         onSubmit={(e) => {
           e.preventDefault();
-          onSubmit(content.title, content.desc);
+          onSubmit(content.title, content.desc, content.level);
         }}
       >
         <div>
@@ -42,6 +43,10 @@ function UpdateArticle({ title, desc, onSubmit }) {
         <div>
           <label htmlFor='desc'>desc</label>
           <textarea name='desc' id='desc' value={content.desc} onChange={handleChange}></textarea>
+        </div>
+        <div>
+          <label htmlFor='level'>난이도</label>
+          <input type='number' name='level' id='level' value={content.level} onChange={handleChange}></input>
         </div>
         <button>Submit</button>
       </form>
